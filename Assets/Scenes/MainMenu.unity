@@ -715,10 +715,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4853304729661587483, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-      propertyPath: sounds.Array.data[0].PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5699879126307183889, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -759,18 +755,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4399457556803767879, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-    - {fileID: 4525756328036888048, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1246682757761128970, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2045012348}
-    - targetCorrespondingSourceObject: {fileID: 1246682757761128970, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2045012347}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
 --- !u!1 &834139344
 GameObject:
@@ -2892,89 +2880,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044588690}
   m_CullTransparentMesh: 1
---- !u!1 &2045012346 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1246682757761128970, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-  m_PrefabInstance: {fileID: 715664613}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2045012347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045012346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af12b839a2b24614da74dcdf242ed236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 10ce732a3f71e4b3ca2c0b996d5bc418, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2045012350}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: SwitchMusic
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2045012348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045012346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af12b839a2b24614da74dcdf242ed236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 10ce732a3f71e4b3ca2c0b996d5bc418, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2045012349}
-        m_TargetAssemblyTypeName: MusicSwitcher, Assembly-CSharp
-        m_MethodName: PlayClip
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2045012349 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5274648567410492916, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-  m_PrefabInstance: {fileID: 715664613}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045012346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4df4f93e717b24941ad4a312188a054a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2045012350 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4853304729661587483, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
-  m_PrefabInstance: {fileID: 715664613}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045012346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040bcbb7612dfcf48935ebdbcb2e7ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2048026602
 GameObject:
   m_ObjectHideFlags: 0
