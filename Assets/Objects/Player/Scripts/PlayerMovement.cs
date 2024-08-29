@@ -5,20 +5,36 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    Vector2 movementInput;
+    [SerializeField] CharacterController2D controller;
+    [Header("Movement")]
+        [SerializeField] FloatReference movementSpeed;
+    
+    
+    float horizontalMove;
+    bool jump;
 
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        this.movementInput = value.Get<Vector2>();
+        this.horizontalMove = context.ReadValue<Vector2>().x;
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.performed){
+            this.jump = true;
+        }
     }
 
     void FixedUpdate(){
         move();
+        
     }
 
     void move(){
-        Vector3 movement = new Vector3(movementInput.x, 0, movementInput.y);
-        transform.position += movement * Time.fixedDeltaTime;
+        controller.Move(horizontalMove * movementSpeed.Value * Time.fixedDeltaTime, false, this.jump);
+        this.jump = false;
     }
+
+
     
 }
