@@ -1,4 +1,6 @@
+
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -16,16 +18,34 @@ public class CharacterController2D : MonoBehaviour
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	private Vector3 velocity = Vector3.zero;
+	private Vector3 m_Velocity = Vector3.zero;
+
+	[Header("Events")]
+	[Space]
+
+	public UnityEvent OnLandEvent;
+    public UnityEvent OnFallEvent;
+
+	[System.Serializable]
+	public class BoolEvent : UnityEvent<bool> { }
+
+	public BoolEvent OnCrouchEvent;
+	private bool m_wasCrouching = false;
 
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-	}
 
+		if (OnLandEvent == null)
+			OnLandEvent = new UnityEvent();
+
+		if (OnCrouchEvent == null)
+			OnCrouchEvent = new BoolEvent();
+	}
 
 	private void FixedUpdate()
 	{
+		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -34,14 +54,22 @@ public class CharacterController2D : MonoBehaviour
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
+			{
 				m_Grounded = true;
+				if (!wasGrounded)
+					OnLandEvent.Invoke();
+			}
 		}
+
+        if (m_Grounded == false && wasGrounded == true)
+        {
+            OnFallEvent.Invoke();
+        }
 	}
 
 
 	public void Move(float move, bool crouch, bool jump)
 	{
-
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
 		{
@@ -59,6 +87,12 @@ public class CharacterController2D : MonoBehaviour
 			// If crouching
 			if (crouch)
 			{
+				if (!m_wasCrouching)
+				{
+					m_wasCrouching = true;
+					OnCrouchEvent.Invoke(true);
+				}
+
 				// Reduce the speed by the crouchSpeed multiplier
 				move *= m_CrouchSpeed;
 
@@ -70,12 +104,18 @@ public class CharacterController2D : MonoBehaviour
 				// Enable the collider when not crouching
 				if (m_CrouchDisableCollider != null)
 					m_CrouchDisableCollider.enabled = true;
+
+				if (m_wasCrouching)
+				{
+					m_wasCrouching = false;
+					OnCrouchEvent.Invoke(false);
+				}
 			}
 
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
+			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
@@ -94,7 +134,9 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded && jump)
 		{
 			// Add a vertical force to the player.
-			m_Grounded = false;
+            
+            // Removed to to comment on Animations video (https://www.youtube.com/watch?v=hkaysu1Z-N8&list=PLPV2KyIb3jR6TFcFuzI2bB7TMNIIBpKMQ&index=3)
+			//m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
