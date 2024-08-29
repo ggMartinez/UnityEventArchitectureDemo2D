@@ -14,13 +14,17 @@ public class PlayerMovement : MonoBehaviour
     
     float horizontalMove;
     bool jump;
+    bool canMove = true;
+    bool attacking = false;
 
 
-
+    void Start(){
+        this.canMove = true;
+        this.attacking = false;
+    }
     void FixedUpdate(){
-        move();
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-        
+            move();
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
     }
 
     void move(){
@@ -44,17 +48,43 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        this.horizontalMove = context.ReadValue<Vector2>().x;
+        if(canMove){
+            if(context.ReadValue<Vector2>().x > 0) this.horizontalMove = 1;
+            if(context.ReadValue<Vector2>().x < 0) this.horizontalMove = -1;
+            if(context.ReadValue<Vector2>().x == 0) this.horizontalMove = 0;
+        }
+        if(!canMove)
+            this.horizontalMove = 0;
+        
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.performed){
-            this.jump = true;
-        if(animator.GetBool("IsGround"))
-            animator.SetBool("IsJumping", true);
+            if(canMove){
+                this.jump = true;
             
+            if(animator.GetBool("IsGround"))
+                animator.SetBool("IsJumping", true);
+                
+            }
         }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context){
+        if(context.performed && !this.attacking){
+            this.canMove = false;
+            this.animator.SetBool("IsJumping", false);
+            this.animator.SetBool("IsAttacking", true);
+            this.attacking = true;
+        }
+    }
+
+    public void OnAttackEnd(){
+        this.canMove = true;
+        this.attacking = false;
+        this.animator.SetBool("IsAttacking", false);
+
     }
 
     

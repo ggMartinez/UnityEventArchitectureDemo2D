@@ -76,6 +76,7 @@ public class CharacterController2D : MonoBehaviour
 			// If the character has a ceiling preventing them from standing up, keep them crouching
 			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
 			{
+				Debug.Log("Cant stand up");
 				crouch = true;
 			}
 		}
@@ -87,6 +88,7 @@ public class CharacterController2D : MonoBehaviour
 			// If crouching
 			if (crouch)
 			{
+
 				if (!m_wasCrouching)
 				{
 					m_wasCrouching = true;
@@ -136,7 +138,7 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
             
             // Removed to to comment on Animations video (https://www.youtube.com/watch?v=hkaysu1Z-N8&list=PLPV2KyIb3jR6TFcFuzI2bB7TMNIIBpKMQ&index=3)
-			//m_Grounded = false;
+			// m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
