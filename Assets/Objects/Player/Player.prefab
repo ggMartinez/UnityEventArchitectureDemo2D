@@ -47,8 +47,10 @@ GameObject:
   - component: {fileID: 3314022343479049811}
   - component: {fileID: 7987042055501754681}
   - component: {fileID: 3052433783214491670}
+  - component: {fileID: 341963191725853695}
   - component: {fileID: 6835030305636111748}
   - component: {fileID: 3069004963463123916}
+  - component: {fileID: 4821133908458953488}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -358,7 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpForce: 600
   m_CrouchSpeed: 1
-  m_MovementSmoothing: 0.05
+  m_MovementSmoothing: 0
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
@@ -417,6 +419,19 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 20
     Variable: {fileID: 11400000, guid: 89d30b31c8d552243b7fabd466c702a3, type: 2}
+--- !u!114 &341963191725853695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355500838378309347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f58504b4649ed24183f12852d464958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 8088695268541622797}
 --- !u!111 &6835030305636111748
 Animation:
   m_ObjectHideFlags: 0
@@ -454,6 +469,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4821133908458953488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355500838378309347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff7b3b5d95dd514db9a2f22c54a4b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4573bd43f81d8454f881fee11f8e31b0, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 341963191725853695}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: ToggleInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6827894254579714326
 GameObject:
   m_ObjectHideFlags: 0

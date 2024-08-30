@@ -1028,7 +1028,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11324453, y: -0.00000047683716, z: -10}
+  m_LocalPosition: {x: -0.11111021, y: -0.00000047683716, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4448,6 +4448,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4853304729661587483, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
+      propertyPath: sounds.Array.data[0].Clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f30a72be5ee1c840b82ba80a87fd2b0, type: 3}
+    - target: {fileID: 4853304729661587483, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
       propertyPath: sounds.Array.data[1].Clips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 7ca0cf540e9f997489fd33c2cb22e066, type: 3}
@@ -5311,6 +5315,10 @@ PrefabInstance:
     - target: {fileID: 6355500838378309347, guid: 3a5d29252313645f0a035946bd8fc2d6, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987042055501754681, guid: 3a5d29252313645f0a035946bd8fc2d6, type: 3}
+      propertyPath: m_MovementSmoothing
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

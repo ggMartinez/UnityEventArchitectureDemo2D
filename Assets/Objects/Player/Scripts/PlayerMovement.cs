@@ -14,12 +14,12 @@ public class PlayerMovement : MonoBehaviour
     
     float horizontalMove;
     bool jump;
-    bool canMove = true;
+    float canMove = 1;
     bool attacking = false;
 
 
     void Start(){
-        this.canMove = true;
+        this.canMove = 1;
         this.attacking = false;
     }
     void FixedUpdate(){
@@ -28,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void move(){
-        controller.Move(horizontalMove * movementSpeed.Value * Time.fixedDeltaTime, false, this.jump);
+        if(attacking && !animator.GetBool("IsGround")) this.canMove = 1;
+        controller.Move(canMove * horizontalMove * movementSpeed.Value * Time.fixedDeltaTime, false, this.jump);
         this.jump = false;
     }
 
@@ -48,20 +49,17 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(canMove){
-            if(context.ReadValue<Vector2>().x > 0) this.horizontalMove = 1;
-            if(context.ReadValue<Vector2>().x < 0) this.horizontalMove = -1;
-            if(context.ReadValue<Vector2>().x == 0) this.horizontalMove = 0;
-        }
-        if(!canMove)
-            this.horizontalMove = 0;
-        
+
+        if(context.ReadValue<Vector2>().x > 0) this.horizontalMove = 1;
+        if(context.ReadValue<Vector2>().x < 0) this.horizontalMove = -1;
+        if(context.ReadValue<Vector2>().x == 0) this.horizontalMove = 0;
+
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.performed){
-            if(canMove){
+            if(canMove == 1){
                 this.jump = true;
             
             if(animator.GetBool("IsGround"))
@@ -73,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context){
         if(context.performed && !this.attacking){
-            this.canMove = false;
+            this.canMove = 0;
             this.animator.SetBool("IsJumping", false);
             this.animator.SetBool("IsAttacking", true);
             this.attacking = true;
@@ -81,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void OnAttackEnd(){
-        this.canMove = true;
+        this.canMove = 1;
         this.attacking = false;
         this.animator.SetBool("IsAttacking", false);
 
