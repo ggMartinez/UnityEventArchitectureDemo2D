@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     bool jump;
     float canMove = 1;
     bool attacking = false;
+    
 
 
     void Start(){
