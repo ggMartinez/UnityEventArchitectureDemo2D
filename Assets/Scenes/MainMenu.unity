@@ -716,6 +716,10 @@ PrefabInstance:
       value: SoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 4853304729661587483, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
+      propertyPath: sounds.Array.data[0].PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853304729661587483, guid: a271b4f934766b44f86dba7a24767cba, type: 3}
       propertyPath: sounds.Array.data[0].Clips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 6f30a72be5ee1c840b82ba80a87fd2b0, type: 3}
@@ -3113,7 +3117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2048026603
 Transform:
   m_ObjectHideFlags: 0
@@ -3148,9 +3152,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1797200969}
-  - {fileID: 2048026603}
   - {fileID: 1197068219}
   - {fileID: 715664613}
+  - {fileID: 2048026603}
   - {fileID: 1286320377}
   - {fileID: 860037852}
   - {fileID: 1666225587}
